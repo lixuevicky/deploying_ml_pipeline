@@ -53,7 +53,7 @@ class InferenceInput(BaseModel):
             }
         }
 # Load trained model
-model = joblib.load('rfc_model.pkl')
+model = joblib.load('lrc_model.pkl')
 encoder = joblib.load('encoder.pkl')
 lb = joblib.load('lb.pkl')
 

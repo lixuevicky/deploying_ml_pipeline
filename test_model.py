@@ -63,7 +63,7 @@ def test_is_model():
     Check saved model is present
     """
     try:
-        rfc_model = joblib.load('rfc_model.pkl')
+        rfc_model = joblib.load('lrc_model.pkl')
         logging.info("Testing model exists: SUCCESS")
     except FileNotFoundError as err:
         logging.error("Testing model exists: The model wasn't found")
@@ -74,7 +74,7 @@ def test_inference(processed_X):
     Check predicted output length
     """
     try:
-        model = joblib.load('rfc_model.pkl')
+        model = joblib.load('lrc_model.pkl')
         assert len(inference(model, processed_X)) == len(processed_X)
         logging.info("Testing inference: SUCCESS")
     except AssertionError as err:

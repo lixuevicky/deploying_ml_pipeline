@@ -33,7 +33,7 @@ X_test, y_test, _, _ = process_data(
 )
 # Train and save a model.
 model = train_model(X_train, y_train)
-joblib.dump(model, 'rfc_model.pkl')
+joblib.dump(model, 'lrc_model.pkl')
 joblib.dump(encoder, 'encoder.pkl')
 joblib.dump(lb, 'lb.pkl')
 
