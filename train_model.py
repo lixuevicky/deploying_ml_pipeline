@@ -11,10 +11,16 @@ from model import train_model, compute_model_metrics, inference
 
 # Add the necessary imports for the starter code.
 file_dir = os.path.dirname(__file__)
-sys.path.insert(0, file_dir)
 
 # Add code to load in the data.
-data = pd.read_csv(os.path.join(file_dir, '..', 'census.csv'))
+possible_paths = [
+        os.path.join(file_dir, 'census.csv'),           # local repo root
+        os.path.join(file_dir, '..', 'census.csv')      # CI/CD folder structure
+    ]
+for path in possible_paths:
+    if os.path.exists(path):
+        data = pd.read_csv(path)
+
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20)
@@ -54,9 +60,13 @@ X, y, _, _ = process_data(
     data, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
 )
 preds = inference(model, X)
-for cat in data[slice_feature].unique():
-    slice_index = data.index[data[slice_feature] == cat]
-    print(cat, compute_model_metrics(y[slice_index], preds[slice_index]))
-
+# for cat in data[slice_feature].unique():
+#     slice_index = data.index[data[slice_feature] == cat]
+#     print(cat, compute_model_metrics(y[slice_index], preds[slice_index]))
+with open("slice_output.txt", "w") as f:
+    for cat in data[slice_feature].unique():
+        slice_index = data.index[data[slice_feature] == cat]
+        metrics = compute_model_metrics(y[slice_index], preds[slice_index])
+        print(f"{cat}: {metrics}", file=f)
 
 
