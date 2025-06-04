@@ -48,7 +48,7 @@ def test_inference_gt_50k():
         "relationship": "Husband",
         "race": "White",
         "sex": "Male",
-        "capital-gain": 0,
+        "capital-gain": 10000,
         "capital-loss": 0,
         "hours-per-week": 45,
         "native-country": "United-States"

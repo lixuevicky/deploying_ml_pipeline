@@ -20,9 +20,9 @@ def train_model(X_train, y_train):
     """
     rfc = RandomForestClassifier(random_state=42)
     param_grid = { 
-    'n_estimators': [200, 500],
+    'n_estimators': [100, 200],
     'max_features': ['log2', 'sqrt'],
-    'max_depth' : [4,5,100],
+    'max_depth' : [4,5,10],
     'criterion' :['gini', 'entropy']
     }
     cv_rfc = GridSearchCV(estimator=rfc, param_grid=param_grid, cv=5)

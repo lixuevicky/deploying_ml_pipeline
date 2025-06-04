@@ -38,8 +38,9 @@ def processed_X(data):
     """
     Extract pre-processed X
     """
-    X, y, _, _ = process_data(
-        data, categorical_features=CAT_FEATURES, label="salary", training=True
+    encoder = joblib.load('encoder.pkl')
+    X, _, _, _ = process_data(
+        data, categorical_features=CAT_FEATURES, label="salary", training=False, encoder=encoder
     )
     return X
 

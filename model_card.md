@@ -17,7 +17,7 @@ Evaluation data is 20% of all data.
 
 ## Metrics
 _Please include the metrics used and your model's performance on those metrics._
-On test data, the performance is: precision: 0.74, recall: 0.63, f1_score: 0.68.
+On test data, the performance is: precision: 0.81, recall: 0.54, f1_score: 0.65.
 
 ## Ethical Considerations
 Since gender and race information are included, there can be some potential biases in the model. We can further check with Aequitas.
