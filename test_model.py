@@ -1,5 +1,4 @@
 import os
-import sys
 import logging
 import pandas as pd
 import pytest
@@ -25,8 +24,7 @@ CAT_FEATURES = [
     "native-country",
 ]
 # Add the necessary imports for the starter code.
-file_dir = os.path.dirname(__file__)
-sys.path.insert(0, file_dir)
+file_dir = os.path.dirname(os.path.realpath(__file__))
 
 @pytest.fixture(scope="module")
 def data():

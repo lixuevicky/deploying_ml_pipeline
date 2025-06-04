@@ -1,5 +1,4 @@
 import os
-import sys
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 import joblib
@@ -18,8 +17,7 @@ CAT_FEATURES = [
     "native-country",
 ]
 
-file_dir = os.path.dirname(__file__)
-sys.path.insert(0, file_dir)
+file_dir = os.path.dirname(os.path.realpath(__file__))
 
 class InferenceInput(BaseModel):
     age: int
