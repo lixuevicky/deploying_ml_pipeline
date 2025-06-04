@@ -31,8 +31,13 @@ def data():
     """
     Extract the data
     """
-    data_path = os.path.join(file_dir, '..', 'census.csv')
-    return pd.read_csv(data_path)
+    possible_paths = [
+        os.path.join(file_dir, 'census.csv'),           # local repo root
+        os.path.join(file_dir, '..', 'census.csv')      # CI/CD folder structure
+    ]
+    for path in possible_paths:
+        if os.path.exists(path):
+            return pd.read_csv(path)
 
 @pytest.fixture(scope="module")
 def processed_X(data):

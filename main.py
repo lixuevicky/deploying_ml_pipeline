@@ -63,7 +63,6 @@ lb = joblib.load(os.path.join(file_dir, 'lb.pkl'))
 # Instantiate the app.
 app = FastAPI()
 
-
 # Define a GET on the specified endpoint.
 @app.get("/")
 async def read_root() -> dict:
