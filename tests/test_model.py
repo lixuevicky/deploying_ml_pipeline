@@ -31,7 +31,7 @@ def data():
     """
     Extract the data
     """
-    data_path = os.path.join(file_dir, 'census.csv')
+    data_path = os.path.join(file_dir, '..', 'census.csv')
     return pd.read_csv(data_path)
 
 @pytest.fixture(scope="module")
