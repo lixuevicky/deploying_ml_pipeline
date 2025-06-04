@@ -193,3 +193,4 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 /census.csv
+rfc_model.pkl
