@@ -24,13 +24,16 @@ CAT_FEATURES = [
     "sex",
     "native-country",
 ]
+# Add the necessary imports for the starter code.
+file_dir = os.path.dirname(__file__)
+sys.path.insert(0, file_dir)
 
 @pytest.fixture(scope="module")
 def data():
     """
     Extract the data
     """
-    data_path = 'census.csv'
+    data_path = os.path.join(file_dir, 'census.csv')
     return pd.read_csv(data_path)
 
 @pytest.fixture(scope="module")
@@ -38,7 +41,7 @@ def processed_X(data):
     """
     Extract pre-processed X
     """
-    encoder = joblib.load('encoder.pkl')
+    encoder = joblib.load(os.path.join(file_dir, 'encoder.pkl'))
     X, _, _, _ = process_data(
         data, categorical_features=CAT_FEATURES, label="salary", training=False, encoder=encoder
     )
@@ -63,7 +66,7 @@ def test_is_model():
     Check saved model is present
     """
     try:
-        rfc_model = joblib.load('lrc_model.pkl')
+        model = joblib.load(os.path.join(file_dir, 'lrc_model.pkl'))
         logging.info("Testing model exists: SUCCESS")
     except FileNotFoundError as err:
         logging.error("Testing model exists: The model wasn't found")
@@ -74,7 +77,7 @@ def test_inference(processed_X):
     Check predicted output length
     """
     try:
-        model = joblib.load('lrc_model.pkl')
+        model = joblib.load(os.path.join(file_dir, 'lrc_model.pkl'))
         assert len(inference(model, processed_X)) == len(processed_X)
         logging.info("Testing inference: SUCCESS")
     except AssertionError as err:

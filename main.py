@@ -1,3 +1,5 @@
+import os
+import sys
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 import joblib
@@ -15,6 +17,9 @@ CAT_FEATURES = [
     "sex",
     "native-country",
 ]
+
+file_dir = os.path.dirname(__file__)
+sys.path.insert(0, file_dir)
 
 class InferenceInput(BaseModel):
     age: int
@@ -53,9 +58,9 @@ class InferenceInput(BaseModel):
             }
         }
 # Load trained model
-model = joblib.load('lrc_model.pkl')
-encoder = joblib.load('encoder.pkl')
-lb = joblib.load('lb.pkl')
+model = joblib.load(os.path.join(file_dir, 'lrc_model.pkl'))
+encoder = joblib.load(os.path.join(file_dir, 'encoder.pkl'))
+lb = joblib.load(os.path.join(file_dir, 'lb.pkl'))
 
 # Instantiate the app.
 app = FastAPI()

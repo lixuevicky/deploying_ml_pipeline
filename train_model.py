@@ -3,12 +3,18 @@
 # Add the necessary imports for the starter code.
 from sklearn.model_selection import train_test_split
 import pandas as pd
+import os
+import sys
 import joblib
 from data import process_data
 from model import train_model, compute_model_metrics, inference
 
+# Add the necessary imports for the starter code.
+file_dir = os.path.dirname(__file__)
+sys.path.insert(0, file_dir)
+
 # Add code to load in the data.
-data = pd.read_csv('census.csv')
+data = pd.read_csv(os.path.join(file_dir, 'census.csv'))
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20)
@@ -33,9 +39,9 @@ X_test, y_test, _, _ = process_data(
 )
 # Train and save a model.
 model = train_model(X_train, y_train)
-joblib.dump(model, 'lrc_model.pkl')
-joblib.dump(encoder, 'encoder.pkl')
-joblib.dump(lb, 'lb.pkl')
+joblib.dump(model, os.path.join(file_dir, 'lrc_model.pkl'))
+joblib.dump(encoder, os.path.join(file_dir, 'encoder.pkl'))
+joblib.dump(lb, os.path.join(file_dir, 'lb.pkl'))
 
 train_pred = inference(model, X_train)
 test_pred = inference(model, X_test)
