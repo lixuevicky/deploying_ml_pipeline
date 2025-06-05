@@ -1,6 +1,6 @@
 import requests
 
-url = "https://auto-ci-cd-deploy-0c43135442df.herokuapp.com/inference"
+url = "https://light-cicd-deploy-f93b36d3d389.herokuapp.com//inference"
 
 payload = {
     "age": 39,
